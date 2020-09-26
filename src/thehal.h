@@ -38,7 +38,7 @@
 
 /* TheHal General Configurations */
 
-/* Enable/Disable GPIO Components */
+/* Enable/Disable "Digital Output Controller" Component */
 #define THE_HAL_COMPONENT_DIGITAL_OUT 1
 
 

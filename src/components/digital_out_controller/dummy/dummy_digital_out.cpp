@@ -55,11 +55,11 @@ bool DigitalOut::setup(const uint8_t initial_value)
 { return true; }
 
 /* Set GPIO digital out value to logical low */
-bool set_low(void)
+bool DigitalOut::set_low(void)
 { return true; }
 
 /* Set GPIO digital out value to logical high */
-bool set_high(void)
+bool DigitalOut::set_high(void)
 { return true; }
 
 /*****************************************************************************/
