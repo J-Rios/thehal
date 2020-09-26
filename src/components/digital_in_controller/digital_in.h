@@ -1,13 +1,13 @@
 
 /**
- * @file    thehal.h
+ * @file    digital_in.h
  * @author  Jose Miguel Rios Rubio <jrios.github@gmail.com>
  * @date    26-09-2020
  * @version 1.0.0
  *
  * @section DESCRIPTION
  *
- * TheHal Project Configurations File.
+ * GPIO Digital Input Controller.
  *
  * @section LICENSE
  *
@@ -30,21 +30,37 @@
 
 /*****************************************************************************/
 
-/* Include Guards */
-#ifndef THE_HAL_H_
-#define THE_HAL_H_
+/* Guards */
+
+/* Component Enabled/Disabled Guard */
+#if THE_HAL_COMPONENT_DIGITAL_IN == 1
+
+/* Include Guard */
+#ifndef THE_HAL_DIGITAL_IN_H_
+#define THE_HAL_DIGITAL_IN_H_
 
 /*****************************************************************************/
 
-/* TheHal General Configurations */
-
-/* Enable/Disable "Digital Output Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_OUT 1
-
-/* Enable/Disable "Digital Input Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_IN 1
+/* Component Configurations */
 
 
 /*****************************************************************************/
 
-#endif // THE_HAL_H_
+/* HAL Selection */
+
+#if defined(ARDUINO)
+    #include "arduino/arduino_digital_in.h"
+#elif defined(ESP_IDF)
+    #include "espidf/espidf_digital_in.h"
+#elif defined(SAM_ASF)
+    #include "sam_asf/sam_asf_digital_in.h"
+#elif defined(__AVR__)
+    #include "avr/avr_digital_in.h"
+#else
+    #include "dummy/dummy_digital_in.h"
+#endif
+
+/*****************************************************************************/
+
+#endif // THE_HAL_DIGITAL_IN_H_
+#endif // THE_HAL_COMPONENT_DIGITAL_IN
