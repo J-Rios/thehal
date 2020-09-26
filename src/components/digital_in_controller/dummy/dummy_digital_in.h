@@ -1,13 +1,13 @@
 
 /**
- * @file    thehal.h
+ * @file    dummy_digital_in.h
  * @author  Jose Miguel Rios Rubio <jrios.github@gmail.com>
  * @date    26-09-2020
  * @version 1.0.0
  *
  * @section DESCRIPTION
  *
- * TheHal Project Configurations File.
+ * Dummy GPIO Digital Input Controller.
  *
  * @section LICENSE
  *
@@ -30,21 +30,38 @@
 
 /*****************************************************************************/
 
-/* Include Guards */
-#ifndef THE_HAL_H_
-#define THE_HAL_H_
+/* Guards */
+
+/* Include Guard */
+#ifndef THE_HAL_DUMMY_DIGITAL_IN_H_
+#define THE_HAL_DUMMY_DIGITAL_IN_H_
 
 /*****************************************************************************/
 
-/* TheHal General Configurations */
+/* Libraries */
 
-/* Enable/Disable "Digital Output Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_OUT 1
+#include <stdint.h>
+#include <stdbool.h>
 
-/* Enable/Disable "Digital Input Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_IN 1
+/*****************************************************************************/
+
+/* Constants */
 
 
 /*****************************************************************************/
 
-#endif // THE_HAL_H_
+/* Class */
+
+class DigitalIn
+{
+    public:
+        DigitalIn(const int8_t _io_pin);
+        ~DigitalIn();
+
+        bool setup(const uint8_t pull_resistor_mode=NONE);
+        bool read(void);
+};
+
+/*****************************************************************************/
+
+#endif /* THE_HAL_DUMMY_DIGITAL_IN_H_ */

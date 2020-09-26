@@ -1,13 +1,13 @@
 
 /**
- * @file    thehal.h
+ * @file    arduino_digital_in.h
  * @author  Jose Miguel Rios Rubio <jrios.github@gmail.com>
  * @date    26-09-2020
  * @version 1.0.0
  *
  * @section DESCRIPTION
  *
- * TheHal Project Configurations File.
+ * Dummy GPIO Digital Input Controller.
  *
  * @section LICENSE
  *
@@ -30,21 +30,49 @@
 
 /*****************************************************************************/
 
-/* Include Guards */
-#ifndef THE_HAL_H_
-#define THE_HAL_H_
+/* Libraries */
+
+#include "dummy_digital_in.h"
 
 /*****************************************************************************/
 
-/* TheHal General Configurations */
+/* Constants */
 
-/* Enable/Disable "Digital Output Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_OUT 1
-
-/* Enable/Disable "Digital Input Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_IN 1
-
+typedef enum
+{
+    UNDEFINED = -1,
+    NONE = 0,
+    PULLUP = 1,
+    PULLDOWN = 2
+} the_hal_digital_in_constants;
 
 /*****************************************************************************/
 
-#endif // THE_HAL_H_
+/* Constructor */
+
+/* DigitalIn constructor */
+DigitalIn::DigitalIn(const int8_t _io_pin)
+{}
+
+/* DigitalIn destructor */
+DigitalIn::~DigitalIn()
+{}
+
+/*****************************************************************************/
+
+/* Public Methods */
+
+/* Initialize GPIO as digital input and set internal pull resistor */
+bool DigitalIn::setup(const uint8_t pull_resistor_mode)
+{ return true; }
+
+/* Get GPIO digital input logical value */
+bool DigitalIn::read(void)
+{ return true; }
+
+/*****************************************************************************/
+
+/* Private Methods */
+
+
+/*****************************************************************************/
