@@ -5,7 +5,7 @@ Universal Hardware Abstraction Layer to unify embedded development through an un
 
 ## Characteristics
 
-- **Structured:** The project must keep a clean and simple structure to avoid innecesary complexity that could affect the maintenanance.
+- **Structured:** The project must keep a clean and simple structure to avoid unnecessary complexity that could affect the maintenance.
 
 - **Modular:** The project must keep a modular structure to isolate each supported functionality using different *components* that allows implements new characteristics
 
@@ -13,13 +13,13 @@ Universal Hardware Abstraction Layer to unify embedded development through an un
 
 - **Simplicity:** Code must be written simple and easy to understand, avoid long functions and keep hardware access just at the lowest functions of each component.
 
-- **Maintenable:** Be compliant with all previous characteristics should make the project to be simple, easy to understand, modify, add new functionalities and be maintainable.
+- **Maintainable:** Be compliant with all previous characteristics should make the project to be simple, easy to understand, modify, add new functionalities and be maintainable.
 
 ## Code Style
 
 - **End of lines:** LF
 
-- **Identation:** 4 spaces
+- **Indentation:** 4 spaces
 
 - **Maximum number of characters per line:** 79
 
