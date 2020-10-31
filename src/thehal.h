@@ -47,4 +47,11 @@
 
 /*****************************************************************************/
 
+/* Components Inclusion */
+
+#include "components/digital_out_controller/digital_out.h"
+//#include "components/digital_in_controller/digital_in.h"
+
+/*****************************************************************************/
+
 #endif // THE_HAL_H_
