@@ -30,6 +30,12 @@
 
 /*****************************************************************************/
 
+/* Build Guard */
+
+#if defined(ARDUINO)
+
+/*****************************************************************************/
+
 /* Libraries */
 
 #include "arduino_digital_out.h"
@@ -106,7 +112,7 @@ bool DigitalOut::set_high(void)
 /* Check if GPIO is not configured (setup() was not called). */
 bool DigitalOut::gpio_is_not_initialized(void)
 {
-    if(this->io_val == UNDEFINED)
+    if(this->io_val != UNDEFINED)
         return false;
     return true;
 }
@@ -118,5 +124,9 @@ bool DigitalOut::is_a_invalid_digital_value(const uint8_t value)
         return false;
     return true;
 }
+
+/*****************************************************************************/
+
+#endif
 
 /*****************************************************************************/
