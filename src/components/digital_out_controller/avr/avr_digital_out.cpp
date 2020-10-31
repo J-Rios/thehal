@@ -30,6 +30,12 @@
 
 /*****************************************************************************/
 
+/* Build Guard */
+
+#if defined(__AVR__) and !defined(ARDUINO)
+
+/*****************************************************************************/
+
 /* Libraries */
 
 #include "avr_digital_out.h"
@@ -135,11 +141,12 @@ void DigitalOut::pinMode(const uint16_t port_pin, const uint8_t val)
     // "DDR" should be specified in MSB byte of "port_pin"
     // "Pin" should be specified in LSB byte of "port_pin"
     // i.e. port_pin = ((DDRB) << 8) | PB0);
-    uint8_t data_direction_register = getDDR(port_pin);
+    uint8_t port = getPORT(port_pin);
+    uint8_t pin = getPIN(port_pin);
     if(val == 0)
-        bitClear(data_direction_register, pin);
+        bitClear(port, pin);
     else
-        bitSet(data_direction_register, pin);
+        bitSet(port, pin);
 }
 
 /* Low Level function to setup digital out pin value through Registers */
@@ -155,5 +162,9 @@ void DigitalOut::digitalWrite(const uint16_t port_pin, const uint8_t val)
     else
         bitSet(port, pin);
 }
+
+/*****************************************************************************/
+
+#endif /* defined(__AVR__) and !defined(ARDUINO) */
 
 /*****************************************************************************/

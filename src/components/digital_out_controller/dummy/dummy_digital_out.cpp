@@ -30,6 +30,13 @@
 
 /*****************************************************************************/
 
+/* Build Guard */
+
+#if !defined(ARDUINO) and !defined(ESP_IDF) and !defined(SAM_ASF) and \
+    !defined(__AVR__)
+
+/*****************************************************************************/
+
 /* Libraries */
 
 #include "dummy_digital_out.h"
@@ -66,5 +73,9 @@ bool DigitalOut::set_high(void)
 
 /* Private Methods */
 
+
+/*****************************************************************************/
+
+#endif /* !defined(ARDUINO) and !defined(ESP_IDF) and ... */
 
 /*****************************************************************************/
