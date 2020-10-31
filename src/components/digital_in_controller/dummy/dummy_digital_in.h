@@ -58,7 +58,7 @@ class DigitalIn
         DigitalIn(const int8_t _io_pin);
         ~DigitalIn();
 
-        bool setup(const uint8_t pull_resistor_mode=NONE);
+        bool setup(const uint8_t pull_resistor_mode);
         bool read(void);
 };
 
