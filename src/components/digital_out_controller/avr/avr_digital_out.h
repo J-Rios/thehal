@@ -55,10 +55,10 @@
 class DigitalOut
 {
     public:
-        DigitalOut(const uint16_t io_pin);
+        DigitalOut();
         ~DigitalOut();
 
-        bool setup(const uint8_t initial_value);
+        bool setup(const uint16_t io_pin, const uint8_t initial_value = 0);
         bool set_low(void);
         bool set_high(void);
 

@@ -54,9 +54,9 @@ typedef enum
 /* Constructor */
 
 /* DigitalOut constructor */
-DigitalOut::DigitalOut(const int8_t io_pin)
+DigitalOut::DigitalOut()
 {
-    this->io_pin = io_pin;
+    this->io_pin = UNDEFINED;
     this->io_val = UNDEFINED;
 }
 
@@ -69,11 +69,12 @@ DigitalOut::~DigitalOut()
 /* Public Methods */
 
 /* Initialize GPIO as digital output and set them to an initial logic value */
-bool DigitalOut::setup(const uint8_t initial_value)
+bool DigitalOut::setup(const int8_t io_pin, const uint8_t initial_value)
 {
     if(is_a_invalid_digital_value(initial_value))
         return false;
 
+    this->io_pin = io_pin;
     this->io_val = initial_value;
     digitalWrite((uint8_t)this->io_pin, (uint8_t)this->io_val);
     pinMode((uint8_t)this->io_pin, OUTPUT);
@@ -112,17 +113,17 @@ bool DigitalOut::set_high(void)
 /* Check if GPIO is not configured (setup() was not called). */
 bool DigitalOut::gpio_is_not_initialized(void)
 {
-    if(this->io_val != UNDEFINED)
-        return false;
-    return true;
+    if(this->io_pin == UNDEFINED)
+        return true;
+    return false;
 }
 
 /* Check if provided value is not a valid digital value */
 bool DigitalOut::is_a_invalid_digital_value(const uint8_t value)
 {
-    if((value == LOW) || (value == HIGH))
-        return false;
-    return true;
+    if((value != LOW) && (value != HIGH))
+        return true;
+    return false;
 }
 
 /*****************************************************************************/

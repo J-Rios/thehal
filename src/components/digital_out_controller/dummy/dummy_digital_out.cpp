@@ -46,7 +46,7 @@
 /* Constructor */
 
 /* DigitalOut constructor */
-DigitalOut::DigitalOut(const int8_t _io_pin)
+DigitalOut::DigitalOut()
 {}
 
 /* DigitalOut destructor */
@@ -58,7 +58,7 @@ DigitalOut::~DigitalOut()
 /* Public Methods */
 
 /* Initialize GPIO as digital output and set them to an initial logic value */
-bool DigitalOut::setup(const uint8_t initial_value)
+bool DigitalOut::setup(const int8_t _io_pin, const uint8_t initial_value)
 { return true; }
 
 /* Set GPIO digital out value to logical low */
