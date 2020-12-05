@@ -43,8 +43,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include <Arduino.h>
-
 /*****************************************************************************/
 
 /* Constants */
@@ -60,7 +58,7 @@ class DigitalOut
         DigitalOut();
         ~DigitalOut();
 
-        bool setup(const int8_t io_pin, const uint8_t initial_value=LOW);
+        bool setup(const int8_t io_pin, const uint8_t initial_value);
         bool set_low(void);
         bool set_high(void);
 

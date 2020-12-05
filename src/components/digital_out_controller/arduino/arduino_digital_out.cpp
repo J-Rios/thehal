@@ -40,6 +40,8 @@
 
 #include "arduino_digital_out.h"
 
+#include <Arduino.h>
+
 /*****************************************************************************/
 
 /* Constants */

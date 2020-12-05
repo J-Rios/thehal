@@ -58,7 +58,7 @@ class DigitalOut
         DigitalOut();
         ~DigitalOut();
 
-        bool setup(const int8_t io_pin, const uint8_t initial_value = 0);
+        bool setup(const int8_t io_pin, const uint8_t initial_value);
         bool set_low(void);
         bool set_high(void);
 
