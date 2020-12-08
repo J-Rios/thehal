@@ -1,13 +1,13 @@
 
 /**
- * @file    espidf_digital_out.cpp
+ * @file    sam_digital_out.cpp
  * @author  Jose Miguel Rios Rubio <jrios.github@gmail.com>
  * @date    26-09-2020
  * @version 1.0.0
  *
  * @section DESCRIPTION
  *
- * GPIO Digital Output Controller for ESP-IDF devices (i.e. ESP32).
+ * GPIO Digital Output Controller for ASF SAM devices.
  *
  * @section LICENSE
  *
@@ -30,18 +30,17 @@
 
 /*****************************************************************************/
 
-/* Guards */
-
 /* Build Guard */
-#if defined(ESP_IDF)
+
+#if defined(SAM_ASF)
 
 /*****************************************************************************/
 
 /* Libraries */
 
-#include "espidf_digital_out.h"
+#include "sam_asf_digital_out.h"
 
-#include <driver/gpio.h>
+#include <asf.h>
 
 /*****************************************************************************/
 
@@ -74,16 +73,17 @@ DigitalOut::~DigitalOut()
 /* Initialize GPIO as digital output and set them to an initial logic value */
 bool DigitalOut::setup(const int8_t io_pin, const uint8_t initial_value)
 {
+    struct port_config config_port_pin;
+
     if(is_a_invalid_digital_value(initial_value))
         return false;
 
     this->io_pin = io_pin;
     this->io_val = initial_value;
-    gpio_pad_select_gpio((gpio_num_t)this->io_pin);
-    if(gpio_set_level((gpio_num_t)this->io_pin, (uint32_t)initial_value) != ESP_OK)
-        return false;
-    if(gpio_set_direction((gpio_num_t)this->io_pin, GPIO_MODE_OUTPUT) != ESP_OK)
-        return false;
+    port_pin_set_output_level((uint8_t)this->io_pin, (bool)this->io_val);
+    port_get_config_defaults(&config_port_pin);
+    config_port_pin.direction = PORT_PIN_DIR_OUTPUT;
+    port_pin_set_config(this->io_pin, &config_port_pin);
 
     return true;
 }
@@ -95,8 +95,7 @@ bool DigitalOut::set_low(void)
         return false;
 
     this->io_val = 0;
-    if(gpio_set_level((gpio_num_t)gpio, this->io_val) != ESP_OK)
-        return false;
+    port_pin_set_output_level((uint8_t)this->io_pin, (bool)this->io_val);
 
     return true;
 }
@@ -108,8 +107,7 @@ bool DigitalOut::set_high(void)
         return false;
 
     this->io_val = 1;
-    if(gpio_set_level((gpio_num_t)gpio, this->io_val) != ESP_OK)
-        return false;
+    port_pin_set_output_level((uint8_t)this->io_pin, (bool)this->io_val);
 
     return true;
 }
@@ -129,11 +127,13 @@ bool DigitalOut::gpio_is_not_initialized(void)
 /* Check if provided value is not a valid digital value */
 bool DigitalOut::is_a_invalid_digital_value(const uint8_t value)
 {
-    if((value != 0) && (value != 1))
+    if((value != LOW) && (value != HIGH))
         return true;
     return false;
 }
 
 /*****************************************************************************/
 
-#endif /* defined(ESP_IDF) */
+#endif
+
+/*****************************************************************************/

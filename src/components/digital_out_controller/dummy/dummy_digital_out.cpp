@@ -1,6 +1,6 @@
 
 /**
- * @file    arduino_digital_out.h
+ * @file    dummy_digital_out.h
  * @author  Jose Miguel Rios Rubio <jrios.github@gmail.com>
  * @date    26-09-2020
  * @version 1.0.0
@@ -30,8 +30,9 @@
 
 /*****************************************************************************/
 
-/* Build Guard */
+/* Guards */
 
+/* Build Guard */
 #if !defined(ARDUINO) and !defined(ESP_IDF) and !defined(SAM_ASF) and \
     !defined(__AVR__)
 
@@ -77,5 +78,3 @@ bool DigitalOut::set_high(void)
 /*****************************************************************************/
 
 #endif /* !defined(ARDUINO) and !defined(ESP_IDF) and ... */
-
-/*****************************************************************************/

@@ -41,11 +41,6 @@
 
 /*****************************************************************************/
 
-/* Component Configurations */
-
-
-/*****************************************************************************/
-
 /* HAL Selection */
 
 #if defined(ARDUINO)
@@ -62,5 +57,5 @@
 
 /*****************************************************************************/
 
-#endif // THE_HAL_DIGITAL_OUT_H_
-#endif // THE_HAL_COMPONENT_DIGITAL_OUT
+#endif /* THE_HAL_DIGITAL_OUT_H_ */
+#endif /* THE_HAL_COMPONENT_DIGITAL_OUT */

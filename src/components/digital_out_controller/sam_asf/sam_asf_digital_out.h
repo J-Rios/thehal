@@ -1,13 +1,13 @@
 
 /**
- * @file    thehal.h
+ * @file    sam_digital_out.h
  * @author  Jose Miguel Rios Rubio <jrios.github@gmail.com>
  * @date    26-09-2020
  * @version 1.0.0
  *
  * @section DESCRIPTION
  *
- * TheHal Project Configurations File.
+ * GPIO Digital Output Controller for ASF SAM devices.
  *
  * @section LICENSE
  *
@@ -30,24 +30,46 @@
 
 /*****************************************************************************/
 
-/* Include Guards */
-#ifndef THE_HAL_H_
-#define THE_HAL_H_
+/* Guards */
+
+/* Include Guard */
+#ifndef THE_HAL_SAM_ASF_DIGITAL_OUT_H_
+#define THE_HAL_SAM_ASF_DIGITAL_OUT_H_
 
 /*****************************************************************************/
 
-/* Default Components General Configuration Inclusion */
+/* Libraries */
 
-#include <thehalconfig.h>
-
-/*****************************************************************************/
-
-/* Components Inclusion */
-
-#include "components/digital_out_controller/digital_out.h"
-#include "components/digital_in_controller/digital_in.h"
-#include "components/time_controller/time_controller.h"
+#include <stdint.h>
+#include <stdbool.h>
 
 /*****************************************************************************/
 
-#endif // THE_HAL_H_
+/* Constants */
+
+
+/*****************************************************************************/
+
+/* Class */
+
+class DigitalOut
+{
+    public:
+        DigitalOut();
+        ~DigitalOut();
+
+        bool setup(const int8_t io_pin, const uint8_t initial_value);
+        bool set_low(void);
+        bool set_high(void);
+
+    private:
+        int8_t io_pin;
+        int8_t io_val;
+
+        bool gpio_is_not_initialized(void);
+        bool is_a_invalid_digital_value(const uint8_t value);
+};
+
+/*****************************************************************************/
+
+#endif /* THE_HAL_SAM_ASF_DIGITAL_OUT_H_ */
