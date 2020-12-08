@@ -1,13 +1,13 @@
 
 /**
- * @file    thehal.h
+ * @file    dummy_time_controller.h
  * @author  Jose Miguel Rios Rubio <jrios.github@gmail.com>
- * @date    26-09-2020
+ * @date    08-12-2020
  * @version 1.0.0
  *
  * @section DESCRIPTION
  *
- * TheHal Project Configurations File.
+ * Dummy time related functionalities Controller.
  *
  * @section LICENSE
  *
@@ -30,31 +30,40 @@
 
 /*****************************************************************************/
 
-/* Include Guards */
-#ifndef THE_HAL_H_
-#define THE_HAL_H_
+/* Guards */
+
+/* Include Guard */
+#ifndef THE_HAL_DUMMY_TIME_H_
+#define THE_HAL_DUMMY_TIME_H_
 
 /*****************************************************************************/
 
-/* TheHal General Configurations */
+/* Libraries */
 
-/* Enable/Disable "Digital Output Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_OUT 1
-
-/* Enable/Disable "Digital Input Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_IN 1
-
-/* Enable/Disable "Time Controller" Component */
-#define THE_HAL_COMPONENT_TIME 1
+#include <stdint.h>
 
 /*****************************************************************************/
 
-/* Components Inclusion */
+/* Constants */
 
-#include "components/digital_out_controller/digital_out.h"
-#include "components/digital_in_controller/digital_in.h"
-#include "components/time_controller/time_controller.h"
 
 /*****************************************************************************/
 
-#endif // THE_HAL_H_
+/* Class */
+
+class Time
+{
+    public:
+        Time();
+        ~Time();
+
+        void setup(void);
+        uint32_t micros(void);
+        uint32_t millis(void);
+        void delay_us(const uint32_t t_delay_us);
+        void delay_ms(const uint32_t t_delay_ms);
+};
+
+/*****************************************************************************/
+
+#endif /* THE_HAL_DUMMY_TIME_H_ */

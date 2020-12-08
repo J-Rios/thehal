@@ -1,13 +1,13 @@
 
 /**
- * @file    thehal.h
+ * @file    time_controller.h
  * @author  Jose Miguel Rios Rubio <jrios.github@gmail.com>
- * @date    26-09-2020
+ * @date    08-12-2020
  * @version 1.0.0
  *
  * @section DESCRIPTION
  *
- * TheHal Project Configurations File.
+ * Time related functionalities Controller.
  *
  * @section LICENSE
  *
@@ -30,31 +30,39 @@
 
 /*****************************************************************************/
 
-/* Include Guards */
-#ifndef THE_HAL_H_
-#define THE_HAL_H_
+/* Guards */
+
+/* Component Enabled/Disabled Guard */
+#if THE_HAL_COMPONENT_TIME == 1
+
+/* Include Guard */
+#ifndef THE_HAL_TIME_H_
+#define THE_HAL_TIME_H_
 
 /*****************************************************************************/
 
-/* TheHal General Configurations */
+/* Component Configurations */
 
-/* Enable/Disable "Digital Output Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_OUT 1
-
-/* Enable/Disable "Digital Input Controller" Component */
-#define THE_HAL_COMPONENT_DIGITAL_IN 1
-
-/* Enable/Disable "Time Controller" Component */
-#define THE_HAL_COMPONENT_TIME 1
 
 /*****************************************************************************/
 
-/* Components Inclusion */
+/* HAL Selection */
 
-#include "components/digital_out_controller/digital_out.h"
-#include "components/digital_in_controller/digital_in.h"
-#include "components/time_controller/time_controller.h"
+#if defined(ARDUINO)
+    #include "arduino/arduino_time_controller.h"
+#elif defined(ESP_IDF)
+    #include "espidf/espidf_time_controller.h"
+//#elif defined(SAM_ASF)
+//    #include "sam_asf/sam_asf_time_controller.h"
+//#elif defined(CMSIS_STM32)
+//    #include "stm32/cmsis_stm32_asf_digital_in.h"
+#elif defined(__AVR__)
+    #include "avr/avr_time_controller.h"
+#else
+    #include "dummy/dummy_time_controller.h"
+#endif
 
 /*****************************************************************************/
 
-#endif // THE_HAL_H_
+#endif // THE_HAL_TIME_H_
+#endif // THE_HAL_COMPONENT_TIME
